@@ -93,6 +93,7 @@ function startgame(){
     ans2.classList.remove('hide')
     ans3.classList.remove('hide')
     ans4.classList.remove('hide')
+    resetButtonColors()
     setNextQuestion()    
 }
 
@@ -163,9 +164,7 @@ function checkanswer(number){
         currentQuestionNum ++
     }
     
-    console.log(currentQuestionNum)
     if (currentQuestionNum === questionBank.length) {
-        
         setTimeout(function() {
             endgame()
           }, 500);
@@ -173,27 +172,30 @@ function checkanswer(number){
     else {
         // Short Delay to see the correct/wrong answer
         setTimeout(function() {
-            ans1.classList.remove('correct')
-            ans2.classList.remove('correct')
-            ans3.classList.remove('correct')
-            ans4.classList.remove('correct')
-            ans1.classList.remove('wrong')
-            ans2.classList.remove('wrong')
-            ans3.classList.remove('wrong')
-            ans4.classList.remove('wrong')
+            resetButtonColors()
             setNextQuestion()
           }, 500);
         
     }
 }
 
+function resetButtonColors (){
+    ans1.classList.remove('correct')
+    ans2.classList.remove('correct')
+    ans3.classList.remove('correct')
+    ans4.classList.remove('correct')
+    ans1.classList.remove('wrong')
+    ans2.classList.remove('wrong')
+    ans3.classList.remove('wrong')
+    ans4.classList.remove('wrong')
+}
 function endgame(){
     console.log("Correct " + correctAns)
     console.log("Wrong " + incorrectans)
     console.log(timeLeft)
     score = timeLeft
     clearInterval(timeInterval)
-    timerDisplay.textContent = 'Time Remaining' + timeLeft
+    timerDisplay.textContent = 'Time Remaining ' + timeLeft
     if (timeLeft===0){
         questionElement.textContent = 'You ran out of time.'
     }
