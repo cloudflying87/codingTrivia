@@ -57,6 +57,8 @@
     var correctAns
     var correctAnswer
     var countQuestion
+    var score
+    var timeInterval
 // Incorrect answers'
     var incorrectans
 // Timer
@@ -96,9 +98,9 @@ function startgame(){
 
 function timer(){
     // 60 Second timer
-    var timeInterval = setInterval(function() {
+    timeInterval = setInterval(function() {
         timerDisplay.textContent = timeLeft + ' seconds remaining';
-      timeLeft--;
+        timeLeft--;
       if (timeLeft === 0) {
         timerDisplay.textContent = '';
         clearInterval(timeInterval);
@@ -189,8 +191,9 @@ function endgame(){
     console.log("Correct " + correctAns)
     console.log("Wrong " + incorrectans)
     console.log(timeLeft)
+    score = timeLeft
     clearInterval(timeInterval)
-    timerDisplay.textContent = 'Game Over';
+    timerDisplay.textContent = 'Time Remaining' + timeLeft
     if (timeLeft===0){
         questionElement.textContent = 'You ran out of time.'
     }
