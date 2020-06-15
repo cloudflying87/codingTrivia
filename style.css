@@ -1,0 +1,17 @@
+.btn.correct{
+    background-color: green;
+}
+
+.myBtn.wrong{
+    background-color: #ca4938;
+}
+
+.hide {
+    display: none;
+}
+
+#startBtn, #nextBtn{
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #2c3ea8;
+}

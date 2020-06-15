@@ -12,26 +12,32 @@
   </head>
   <body>
     <nav class="navbar navbar-dark" style="background-color: lightblue">
-      <div class= "sm-4 float-left mt-2 ml-4 highscores">View Highscores</div>
-      <div id="timer" class="sm-4 float-right mt-2 mr-4">Timer:</div>
+      <div id ="highScores" class= "sm-4 float-left mt-2 ml-4">View Highscores</div>
+      <div id="timer" class="sm-4 float-right mt-2 mr-4">Timer</div>
     </nav>
 
-     <div class="container sm-6 text-center mt-5">
-      <div id="title" class="row sm-10 justify-content-center">
-          <h1>Coding Quiz for HTML, CSS, JavaScript.</h1>
+     <div class="container sm-6 text-center mt-3">
+      <div   class="row sm-10 justify-content-center">
+          <h1 id="title">Coding Quiz for HTML, CSS, JavaScript.</h1>
       </div>
 
-      <div class="row justify-content-center question m-3">
-        <h5>You will have 60 seconds to complete the quiz. Each incorrect answer removes 10 seconds from the clock. Your score will be based on the time remaining. </h5>
+      <div class="row justify-content-center m-3">
+        <h5 id="questionElement">You will have 60 seconds to complete the quiz. Each incorrect answer removes 10 seconds from the clock. Your score will be based on the time remaining. </h5>
+        <button id='ans1' class=" hide btn btn-primary col-7 m-1 hide">Answer 1</button>
+        <button id='ans2'class="hide btn btn-primary col-7 m-1 hide">Answer 2</button>
+        <button id='ans3' class="hide btn btn-primary col-7 m-1 hide">Answer 3</button>
+        <button id='ans4' class="hide btn btn-primary col-7 m-1 hide">Answer 4</button>
+        
       </div>
 
       <div class="row justify-content-center m-3 start-game">
-        <a name="Start Game" id="startBtn" class="btn btn-primary button" role="button">Start Game
-        </a>  
+        <button id="startBtn" class="btn btn-primary">Start Game
+        </button>  
+        <button id="nextBtn" class="btn btn-primary hide">Next </button>  
       </div>
 
-      <div class="row justify-content-center answer m-3">
-        <h4></h4>
+      <div class="row justify-content-center m-3">
+        <h4 id="answer"></h4>
       </div>
     </div> 
       
