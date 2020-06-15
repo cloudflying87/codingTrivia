@@ -61,7 +61,7 @@
     var incorrectans
 // Timer
     var timer
-    var timeLeft = 60
+    var timeLeft
     var timeInterval
 // each part of the page
     var timerDisplay = document.getElementById('timer');
@@ -79,25 +79,23 @@
 startBtn.addEventListener('click', startgame);
 
 function startgame(){
+    title.classList.add('hide')
     startBtn.classList.add('hide')
     timer();
     questionShuffle = questionBank.sort(() => Math.random() - .5);
     currentQuestionNum = 0
     correctAns = 0
     incorrectans = 0
-    countQuestion = 1
+    timeLeft = 60
     ans1.classList.remove('hide')
     ans2.classList.remove('hide')
     ans3.classList.remove('hide')
     ans4.classList.remove('hide')
-    
-    setNextQuestion()
-    
+    setNextQuestion()    
 }
 
 function timer(){
     // 60 Second timer
-    
     var timeInterval = setInterval(function() {
         timerDisplay.textContent = timeLeft + ' seconds remaining';
       timeLeft--;
@@ -134,38 +132,79 @@ function showQuestion (question){
 }
 
 function checkanswer(number){
-    
     if (correctButton === number){
-        answerCorrect === true
-        correctAns ++ 
-        currentQuestionNum ++
-    }
+        if (number === 1){
+            ans1.classList.add('correct')
+         } else if (number ===2){
+            ans2.classList.add('correct')
+         } else if (number ===3){
+            ans3.classList.add('correct')
+         } else {
+            ans4.classList.add('correct')
+         }
+         correctAns ++ 
+         currentQuestionNum ++     
+        }
+        
     else {
-        answerCorrect === false
+        if (number === 1){
+            ans1.classList.add('wrong')
+         } else if (number ===2){
+            ans2.classList.add('wrong')
+         } else if (number ===3){
+            ans3.classList.add('wrong')
+         } else {
+            ans4.classList.add('wrong')
+         }
         incorrectans ++
         timeLeft -= 10
         currentQuestionNum ++
     }
     
     console.log(currentQuestionNum)
-    if (currentQuestionNum == questionBank.length) {
-        endgame()
+    if (currentQuestionNum === questionBank.length) {
+        
+        setTimeout(function() {
+            endgame()
+          }, 500);
     }
-    setNextQuestion()
+    else {
+        // Short Delay to see the correct/wrong answer
+        setTimeout(function() {
+            ans1.classList.remove('correct')
+            ans2.classList.remove('correct')
+            ans3.classList.remove('correct')
+            ans4.classList.remove('correct')
+            ans1.classList.remove('wrong')
+            ans2.classList.remove('wrong')
+            ans3.classList.remove('wrong')
+            ans4.classList.remove('wrong')
+            setNextQuestion()
+          }, 500);
+        
+    }
 }
 
 function endgame(){
     console.log("Correct " + correctAns)
     console.log("Wrong " + incorrectans)
     console.log(timeLeft)
-    question.classList.add('hide')
+    clearInterval(timeInterval)
+    timerDisplay.textContent = 'Game Over';
+    if (timeLeft===0){
+        questionElement.textContent = 'You ran out of time.'
+    }
+    else{
+        questionElement.textContent = 'Game Over'
+    }
     ans1.classList.add('hide')
     ans2.classList.add('hide')
     ans3.classList.add('hide')
     ans4.classList.add('hide')
-
-
+    startBtn.textContent = "Play Again?"
+    startBtn.classList.remove('hide')
 }
+
 ans1.addEventListener('click',function(){
     checkanswer(1);
 },false);
