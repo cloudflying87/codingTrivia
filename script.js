@@ -98,6 +98,7 @@
     var timer
     var timeLeft
     var timeInterval
+    var highUser
 // each part of the page
     var timerDisplay = document.getElementById('timer');
     var highScores = document.getElementById('highScores');
@@ -227,6 +228,7 @@ function resetButtonColors (){
     ans3.classList.remove('wrong')
     ans4.classList.remove('wrong')
 }
+
 function endgame(){
     console.log("Correct " + correctAns)
     console.log("Wrong " + incorrectans)
@@ -261,17 +263,23 @@ function highScoreDisplay(){
 }
 
 function storeHighScore(){
-    var highUser = {
+        highUser = {
         initials: initials.value.trim(),
         highscore: timeLeft
     }
 
     localStorage.setItem('highscore',JSON.stringify(highUser))
-    
-    
 }
 
+function initHighScore(){
+    localStorage.getItem('highscore',JSON.parse(highscore))
 
+    // if(highscorestore)
+}
+// Need to call array out of storage with parse
+// push user input to array
+// display array to user
+// store 
 ans1.addEventListener('click',function(){
     checkanswer(1);
 },false);
