@@ -51,6 +51,38 @@
                 {text:'<!DOCTYPE>',correct:false},
                 {text:'<caption>',correct:false},
             ]
+        },
+        {question:'What tag is used to define an unordered list that is bulleted?',
+            answers:[
+                {text:'<ul>',correct:true},
+                {text:'<s>',correct:false},
+                {text:'<li>',correct:false},
+                {text:'<u>',correct:false},
+            ]
+        },
+        {question:'What is the element used – and hidden – in code that explains things and makes the content more readable?',
+            answers:[
+                {text:'Comparisons',correct:false},
+                {text:'Quotations',correct:false},
+                {text:'Comments',correct:true},
+                {text:'Notes',correct:false},
+            ]
+        },
+        {question:'In JavaScript, what element is used to store multiple values in a single variable?',
+            answers:[
+                {text:'Variables',correct:false},
+                {text:'Arrays',correct:true},
+                {text:'Strings',correct:false},
+                {text:'Functions',correct:false},
+            ]
+        },
+        {question:'What is the element called that can continue to execute a block of code as long as the specified condition remains TRUE?',
+            answers:[
+                {text:'Debugger',correct:false},
+                {text:'Clone',correct:false},
+                {text:'Repeater',correct:false},
+                {text:'Loop',correct:true},
+            ]
         }
     ]
 // Correct answers
@@ -71,6 +103,7 @@
     var title = document.getElementById('title');
     var question =document.getElementById('question');
     var startBtn = document.getElementById('startBtn');
+    var highScoreEl = document.getElementById('highScoreEl')
     var correctButton
     var ans1 = document.getElementById('ans1');
     var ans2 = document.getElementById('ans2');
@@ -193,23 +226,31 @@ function endgame(){
     console.log("Correct " + correctAns)
     console.log("Wrong " + incorrectans)
     console.log(timeLeft)
-    score = timeLeft
-    clearInterval(timeInterval)
-    timerDisplay.textContent = 'Time Remaining ' + timeLeft
+    score = timeLeft;
+    clearInterval(timeInterval);
+    timerDisplay.textContent = 'Time Remaining ' + timeLeft;
     if (timeLeft===0){
         questionElement.textContent = 'You ran out of time.'
     }
     else{
         questionElement.textContent = 'Game Over'
-    }
-    ans1.classList.add('hide')
-    ans2.classList.add('hide')
-    ans3.classList.add('hide')
-    ans4.classList.add('hide')
+    };
+    ans1.classList.add('hide');
+    ans2.classList.add('hide');
+    ans3.classList.add('hide');
+    ans4.classList.add('hide');
+    highScore();
+}
+
+function highScore(){
+    highScoreEl.textContent = 'Your score was ' + timeLeft + '! <br><br> You got ' + correctAns + ' correct and ' + incorrectans + ' wrong. '
     startBtn.textContent = "Play Again?"
     startBtn.classList.remove('hide')
 }
 
+function highScoreDisplay(){
+
+}
 ans1.addEventListener('click',function(){
     checkanswer(1);
 },false);

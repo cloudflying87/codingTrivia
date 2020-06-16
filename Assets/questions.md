@@ -107,13 +107,6 @@ What is the name of the object that allows you to perform mathematical tasks wit
 3.  Count
 4.  Math
 
-What is the element used – and hidden – in code that explains things and makes the content more readable?
-
-1.  Comparisons
-2.  Quotations
-3.  Comments
-4.  Notes
-
 What are the identifiers called that cannot be used as variables or function names?
 
 1.  Constants
@@ -121,12 +114,6 @@ What are the identifiers called that cannot be used as variables or function nam
 3.  Favorites
 4.  Reserved Words
 
-In JavaScript, what element is used to store multiple values in a single variable?
-
-1.  Variables
-2.  Arrays
-3.  Strings
-4.  Functions
 
 In JavaScript, what is used in conjunction with HTML to “react” to certain elements?
 
@@ -135,16 +122,3 @@ In JavaScript, what is used in conjunction with HTML to “react” to certain e
 3.  Boolean
 4.  Condition
 
-What is the element called that can continue to execute a block of code as long as the specified condition remains TRUE?
-
-1.  Debugger
-2.  Clone
-3.  Repeater
-4.  Loop
-
-What is the name of the statement that is used to exit or end a loop?
-
-1.  Falter statement
-2.  Break statement
-3.  Conditional statement
-4.  Close statement
