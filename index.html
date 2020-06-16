@@ -12,7 +12,7 @@
   </head>
   <body>
     <nav class="navbar navbar-dark" style="background-color: lightblue">
-      <div id ="highScores" class= "sm-4 float-left mt-2 ml-4">View Highscores</div>
+      <div id ="highScores" class= "sm-4 float-left mt-2 ml-4"><a href="#">View Highscores</a></div>
       <div id="timer" class="sm-4 float-right mt-2 mr-4">Timer</div>
     </nav>
 
@@ -31,9 +31,14 @@
       </div>
 
       <div class="row justify-content-center m-3">
-        <h4 id="highScoreEl"></h4>
+        <h5 id="highScoreEl"></h5>
       </div>
 
+      <div class="row justify-content-center m-3 hide" id = "highInitials">
+        <input type="text" class="" placeholder="Enter your Initials" id="initials">
+        <button class="btn btn-primary ml-3" id="highScoreButton">Submit</button>
+      </div>
+      
       <div class="row justify-content-center m-3 start-game">
         <button id="startBtn" class="btn btn-primary">Start Game
         </button>  

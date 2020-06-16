@@ -91,6 +91,7 @@
     var countQuestion
     var score
     var timeInterval
+    var correctButton
 // Incorrect answers'
     var incorrectans
 // Timer
@@ -99,12 +100,14 @@
     var timeInterval
 // each part of the page
     var timerDisplay = document.getElementById('timer');
-    var highscores = document.getElementById('highScores');
+    var highScores = document.getElementById('highScores');
     var title = document.getElementById('title');
     var question =document.getElementById('question');
     var startBtn = document.getElementById('startBtn');
     var highScoreEl = document.getElementById('highScoreEl')
-    var correctButton
+    var highScoreButton = document.getElementById('highScoreButton')
+    var highInitials = document.getElementById('highInitials')
+    var initials =document.getElementById('initials')
     var ans1 = document.getElementById('ans1');
     var ans2 = document.getElementById('ans2');
     var ans3 = document.getElementById('ans3');
@@ -122,10 +125,12 @@ function startgame(){
     correctAns = 0
     incorrectans = 0
     timeLeft = 60
+    highScoreEl.innerHTML = ''
     ans1.classList.remove('hide')
     ans2.classList.remove('hide')
     ans3.classList.remove('hide')
     ans4.classList.remove('hide')
+    highInitials.classList.add('hide')
     resetButtonColors()
     setNextQuestion()    
 }
@@ -229,7 +234,7 @@ function endgame(){
     score = timeLeft;
     clearInterval(timeInterval);
     timerDisplay.textContent = 'Time Remaining ' + timeLeft;
-    if (timeLeft===0){
+    if (timeLeft <= 0){
         questionElement.textContent = 'You ran out of time.'
     }
     else{
@@ -243,14 +248,30 @@ function endgame(){
 }
 
 function highScore(){
-    highScoreEl.textContent = 'Your score was ' + timeLeft + '! <br><br> You got ' + correctAns + ' correct and ' + incorrectans + ' wrong. '
-    startBtn.textContent = "Play Again?"
-    startBtn.classList.remove('hide')
+    highScoreEl.innerHTML = 'Your score was ' + timeLeft + ' <br><br> You answered ' + correctAns + ' out of ' + questionBank.length + ' correct';
+    highInitials.classList.remove('hide')
+    
+    startBtn.textContent = "Play Again?";
+    startBtn.classList.remove('hide');
+
 }
 
 function highScoreDisplay(){
 
 }
+
+function storeHighScore(){
+    var highUser = {
+        initials: initials.value.trim(),
+        highscore: timeLeft
+    }
+
+    localStorage.setItem('highscore',JSON.stringify(highUser))
+    
+    
+}
+
+
 ans1.addEventListener('click',function(){
     checkanswer(1);
 },false);
@@ -266,3 +287,6 @@ ans3.addEventListener('click',function(){
 ans4.addEventListener('click',function(){
     checkanswer(4);
 },false);
+
+highScores.addEventListener('click',highScoreDisplay())
+highScoreButton.addEventListener('click',storeHighScore)
