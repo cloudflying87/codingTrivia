@@ -298,7 +298,7 @@ function storeHighScore(){
 function initHighScore(){
     // pull the stored array from the local storage by name of highScoreArr
     // have to parse
-    highScoreArr = JSON.parse(localStorage.getItem('highScoreArr'));
+    highScoreArr = JSON.parse(localStorage.getItem('highScoreArr')) || [];
 }
 // Need to call array out of storage with parse
 // push user input to array
