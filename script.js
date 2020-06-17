@@ -99,6 +99,7 @@
     var timeLeft
     var timeInterval
     var highUser
+    var highScoreArr
 // each part of the page
     var timerDisplay = document.getElementById('timer');
     var highScores = document.getElementById('highScores');
@@ -259,20 +260,34 @@ function highScore(){
 }
 
 function highScoreDisplay(){
+    initHighScore();
+    questionElement.innerHTML = ''
+    title.innerHTML = ''
 
 }
 
 function storeHighScore(){
+    console.log(initials.value)
+    console.log(timeLeft)
+    if (timeLeft !== undefined){
+        console.log('inside if ' +initials.value)
+        console.log(timeLeft)
         highUser = {
-        initials: initials.value.trim(),
-        highscore: timeLeft
-    }
-
-    localStorage.setItem('highscore',JSON.stringify(highUser))
+            initials: initials.value.trim(),
+            highscore: timeLeft
+        }
+    }    
+    localStorage.setItem('highScoreArr',JSON.stringify(highUser))
 }
 
 function initHighScore(){
-    localStorage.getItem('highscore',JSON.parse(highscore))
+    // pull the stored array from the local storage by name of highScoreArr
+    // have to parse
+    console.log(localStorage.getItem('highScoreArr'));
+    // var storedHighScores = JSON.parse(localStorage.getItem('highScoreArr'));
+    // if (storedHighScore !== null){
+    //     highScoreArr = storedHighScore;
+    // }
 
     // if(highscorestore)
 }
@@ -296,5 +311,8 @@ ans4.addEventListener('click',function(){
     checkanswer(4);
 },false);
 
-highScores.addEventListener('click',highScoreDisplay())
-highScoreButton.addEventListener('click',storeHighScore)
+highScores.addEventListener('click',function(event) {
+    event.preventDefault();
+}
+)
+highScoreButton.addEventListener('click',storeHighScore())
