@@ -280,21 +280,17 @@ function highScoreDisplay(){
         var li = document.createElement("li");
         li.textContent = hs;
         li.setAttribute("data-index", i);
-    
-        li.appendChild(button);
         highScoreEl.appendChild(li);
       }
     
 }
 
 function storeHighScore(){
-    if (timeLeft !== undefined){
-        highUser = {
+        highUser = [{
             initials: initials.value.trim(),
             highscore: timeLeft
-        }
-    }    
-    console.log(highScoreArr);
+        }]
+    console.log(typeof highScoreArr);
     highScoreArr.push(highUser);
     localStorage.setItem('highScoreArr',JSON.stringify(highUser))
     highScoreDisplay()
