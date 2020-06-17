@@ -286,11 +286,11 @@ function highScoreDisplay(){
 }
 
 function storeHighScore(){
-        highUser = [{
-            initials: initials.value.trim(),
-            highscore: timeLeft
-        }]
-    console.log(typeof highScoreArr);
+        highUser = [
+            initials.value.trim(),
+            timeLeft
+        ]
+    
     highScoreArr.push(highUser);
     localStorage.setItem('highScoreArr',JSON.stringify(highUser))
     highScoreDisplay()
