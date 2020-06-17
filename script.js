@@ -99,7 +99,7 @@
     var timeLeft
     var timeInterval
     var highUser
-    var highScoreArr
+    var highScoreArr = [];
 // each part of the page
     var timerDisplay = document.getElementById('timer');
     var highScores = document.getElementById('highScores');
@@ -119,8 +119,6 @@
 startBtn.addEventListener('click', startgame);
 
 function startgame(){
-    title.classList.add('hide')
-    startBtn.classList.add('hide')
     timer();
     questionShuffle = questionBank.sort(() => Math.random() - .5);
     currentQuestionNum = 0
@@ -133,6 +131,9 @@ function startgame(){
     ans3.classList.remove('hide')
     ans4.classList.remove('hide')
     highInitials.classList.add('hide')
+    title.classList.add('hide')
+    startBtn.classList.add('hide')
+    questionElement.classList.remove('hide')
     resetButtonColors()
     setNextQuestion()    
 }
@@ -231,9 +232,6 @@ function resetButtonColors (){
 }
 
 function endgame(){
-    console.log("Correct " + correctAns)
-    console.log("Wrong " + incorrectans)
-    console.log(timeLeft)
     score = timeLeft;
     clearInterval(timeInterval);
     timerDisplay.textContent = 'Time Remaining ' + timeLeft;
@@ -243,53 +241,70 @@ function endgame(){
     else{
         questionElement.textContent = 'Game Over'
     };
+    hideButtons();
+    highScore();
+}
+function hideButtons(){
     ans1.classList.add('hide');
     ans2.classList.add('hide');
     ans3.classList.add('hide');
     ans4.classList.add('hide');
-    highScore();
 }
-
+function hideText(){
+    questionElement.classList.add('hide');
+    title.classList.add('hide')
+    initials.classList.add('hide');
+    highScoreButton.classList.add('hide');
+}
 function highScore(){
     highScoreEl.innerHTML = 'Your score was ' + timeLeft + ' <br><br> You answered ' + correctAns + ' out of ' + questionBank.length + ' correct';
+    questionElement.classList.add('hide')
     highInitials.classList.remove('hide')
-    
+    initials.value = ""
+    initials.classList.remove('hide')
+    highScoreButton.classList.remove('hide')
     startBtn.textContent = "Play Again?";
     startBtn.classList.remove('hide');
-
 }
 
 function highScoreDisplay(){
     initHighScore();
-    questionElement.innerHTML = ''
-    title.innerHTML = ''
-
+    hideButtons();
+    hideText();
+    highScoreEl.innerHTML = '';
+    startBtn.textContent = "Play Game";
+    startBtn.classList.remove('hide');
+    for (var i = 0; i < highScoreArr.length; i++) {
+        var hs = highScoreArr[i];
+    
+        var li = document.createElement("li");
+        li.textContent = hs;
+        li.setAttribute("data-index", i);
+    
+        li.appendChild(button);
+        highScoreEl.appendChild(li);
+      }
+    
 }
 
 function storeHighScore(){
-    console.log(initials.value)
-    console.log(timeLeft)
     if (timeLeft !== undefined){
-        console.log('inside if ' +initials.value)
-        console.log(timeLeft)
         highUser = {
             initials: initials.value.trim(),
             highscore: timeLeft
         }
     }    
+    console.log(highScoreArr);
+    highScoreArr.push(highUser);
     localStorage.setItem('highScoreArr',JSON.stringify(highUser))
+    highScoreDisplay()
 }
 
 function initHighScore(){
     // pull the stored array from the local storage by name of highScoreArr
     // have to parse
-    console.log(localStorage.getItem('highScoreArr'));
-    // var storedHighScores = JSON.parse(localStorage.getItem('highScoreArr'));
-    // if (storedHighScore !== null){
-    //     highScoreArr = storedHighScore;
-    // }
+    highScoreArr = JSON.parse(localStorage.getItem('highScoreArr'));
 
-    // if(highscorestore)
 }
 // Need to call array out of storage with parse
 // push user input to array
@@ -312,7 +327,12 @@ ans4.addEventListener('click',function(){
 },false);
 
 highScores.addEventListener('click',function(event) {
-    event.preventDefault();
+    event.preventDefault(); 
+    highScoreDisplay();
 }
 )
-highScoreButton.addEventListener('click',storeHighScore())
+highScoreButton.addEventListener('click',function(event) {
+   event.preventDefault(); 
+   storeHighScore()
+}
+)
