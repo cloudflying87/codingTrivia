@@ -263,7 +263,7 @@ function highScore(){
     initials.value = ""
     initials.classList.remove('hide')
     highScoreButton.classList.remove('hide')
-    startBtn.textContent = "Play Again?";
+    startBtn.textContent = "Take the Quiz Again?";
     startBtn.classList.remove('hide');
 }
 
@@ -272,7 +272,7 @@ function highScoreDisplay(){
     hideButtons();
     hideText();
     highScoreEl.innerHTML = '';
-    startBtn.textContent = "Play Game";
+    startBtn.textContent = "Take Quiz";
     startBtn.classList.remove('hide');
     for (var i = 0; i < highScoreArr.length; i++) {
         var hs = highScoreArr[i];
@@ -287,12 +287,11 @@ function highScoreDisplay(){
 
 function storeHighScore(){
         highUser = [
-            initials.value.trim(),
-            timeLeft
+            timeLeft+ " - " + initials.value.trim(),
         ]
-    
     highScoreArr.push(highUser);
-    localStorage.setItem('highScoreArr',JSON.stringify(highUser))
+    highScoreArr.sort()
+    localStorage.setItem('highScoreArr',JSON.stringify(highScoreArr))
     highScoreDisplay()
 }
 
@@ -300,7 +299,6 @@ function initHighScore(){
     // pull the stored array from the local storage by name of highScoreArr
     // have to parse
     highScoreArr = JSON.parse(localStorage.getItem('highScoreArr'));
-
 }
 // Need to call array out of storage with parse
 // push user input to array
